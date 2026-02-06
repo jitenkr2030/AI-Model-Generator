@@ -1,141 +1,362 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# AI Model Generator - Virtual Fashion Photography Platform
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+> "Upload clothes. Get a human. No drama."
 
-## ✨ Technology Stack
+A revolutionary AI-powered platform that transforms fashion e-commerce by generating professional model images without the need for photoshoots, models, or photographers.
 
-This scaffold provides a robust foundation built with:
+## 🚀 Problem Solved
 
-### 🎯 Core Framework
-- **⚡ Next.js 16** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+**Current Pain for Fashion Sellers:**
+- ❌ Hiring models is slow and expensive
+- ❌ Photographers cost ₹5,000-15,000 per shoot
+- ❌ Coordination is painful and time-consuming
+- ❌ Legal consent paperwork is a nightmare
+- ❌ Re-shoots kill profit margins
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+**Our Solution:**
+- ✅ No humans involved - 100% AI-generated models
+- ✅ Same dress, 10 different AI models
+- ✅ Same product, different demographics
+- ✅ Ready for Amazon, Meesho, Instagram in 30 seconds
+- ✅ Commercial use included
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+## 💰 Business Model
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Fetch** - Promise-based HTTP request
+### Pricing Tiers
+- **Pay Per Image**: ₹99 per image
+- **Subscription**: ₹999/month (300-500 images)
+- **Enterprise**: ₹10,000-50,000/month (Custom models, API access, Brand consistency)
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+### Target Market
+- 🎯 Instagram sellers
+- 🎯 Meesho sellers  
+- 🎯 Local D2C brands
+- 🎯 Fashion exporters
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
+## 🛠 Tech Stack
 
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
+### Frontend
+- **Framework**: Next.js 16 with App Router
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4
+- **UI Components**: shadcn/ui (New York style)
+- **Icons**: Lucide React
 
-## 🎯 Why This Scaffold?
+### Backend
+- **API**: Next.js API Routes
+- **Image Processing**: Sharp
+- **AI Generation**: z-ai-web-dev-sdk
+- **File Storage**: Local filesystem (production: AWS S3)
 
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+### Database (Future)
+- **ORM**: Prisma
+- **Database**: SQLite (development) / PostgreSQL (production)
 
 ## 🚀 Quick Start
 
+### Prerequisites
+- Node.js 18+
+- Bun or npm
+- Git
+
+### Installation
+
+1. **Clone the repository**
 ```bash
-# Install dependencies
-bun install
-
-# Start development server
-bun run dev
-
-# Build for production
-bun run build
-
-# Start production server
-bun start
+git clone https://github.com/jitenkr2030/AI-Model-Generator.git
+cd AI-Model-Generator
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+2. **Install dependencies**
+```bash
+bun install
+# or
+npm install
+```
 
-## 🤖 Powered by Z.ai
+3. **Environment Setup**
+```bash
+cp .env.example .env.local
+# Edit .env.local with your configuration
+```
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+4. **Run development server**
+```bash
+bun run dev
+# or
+npm run dev
+```
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
-
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
+5. **Open your browser**
+Navigate to `http://localhost:3000`
 
 ## 📁 Project Structure
 
 ```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+AI-Model-Generator/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── api/               # API endpoints
+│   │   │   ├── upload/        # Image upload
+│   │   │   ├── generate/      # AI generation
+│   │   │   ├── download/      # Image processing
+│   │   │   ├── credits/       # Credits management
+│   │   │   └── admin/         # Admin panel
+│   │   ├── globals.css        # Global styles
+│   │   ├── layout.tsx         # Root layout
+│   │   └── page.tsx           # Home page
+│   ├── components/            # React components
+│   │   ├── ui/               # shadcn/ui components
+│   │   ├── ImageUpload.tsx   # Upload interface
+│   │   ├── ModelSelector.tsx # Model selection
+│   │   ├── PoseSelector.tsx  # Pose/scene selection
+│   │   ├── GenerationProgress.tsx # Progress UI
+│   │   ├── ResultsDisplay.tsx # Results & download
+│   │   └── CreditsDisplay.tsx # Credits management
+│   └── lib/                  # Utilities and helpers
+├── public/                   # Static assets
+│   ├── uploads/             # User uploads
+│   └── generated/           # AI generated images
+├── prisma/                  # Database schema
+├── docs/                    # Documentation
+└── README.md
 ```
 
-## 🎨 Available Features & Components
+## 🔧 API Endpoints
 
-This scaffold includes a comprehensive set of modern web development tools:
+### Image Upload
+```
+POST /api/upload
+Content-Type: multipart/form-data
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+Response:
+{
+  "success": true,
+  "url": "/uploads/filename.jpg",
+  "filename": "filename.jpg",
+  "size": 1024000,
+  "type": "image/jpeg"
+}
+```
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+### AI Generation
+```
+POST /api/generate
+Content-Type: application/json
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+{
+  "productImage": "/uploads/product.jpg",
+  "model": {
+    "id": "model1",
+    "name": "Priya",
+    "gender": "female",
+    "ageRange": "18-25",
+    "bodyType": "slim",
+    "skinTone": "medium"
+  },
+  "pose": {
+    "pose": { "id": "standing", "name": "Standing" },
+    "scene": { "id": "studio", "name": "Studio" }
+  }
+}
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Fetch + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+Response:
+{
+  "success": true,
+  "images": ["/generated/image1.png", "/generated/image2.png"],
+  "prompt": "Professional fashion photography...",
+  "model": "Priya",
+  "pose": "Standing",
+  "scene": "Studio"
+}
+```
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
+### Platform Download
+```
+POST /api/download
+Content-Type: application/json
 
-## 🤝 Get Started with Z.ai
+{
+  "imageUrl": "/generated/image1.png",
+  "platform": "amazon",
+  "size": "2000x2000"
+}
 
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+Response:
+{
+  "success": true,
+  "downloadUrl": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ...",
+  "filename": "amazon-1234567890.jpg",
+  "size": "2000x2000",
+  "platform": "amazon",
+  "fileSize": 512000
+}
+```
+
+### Credits Management
+```
+GET /api/credits
+Response:
+{
+  "success": true,
+  "data": {
+    "credits": 999,
+    "subscription": "free",
+    "usageHistory": []
+  }
+}
+
+POST /api/credits
+{
+  "action": "purchase",
+  "amount": 100
+}
+```
+
+## 🎨 Features
+
+### Core Functionality
+- ✅ **Drag & Drop Upload**: Intuitive image upload with validation
+- ✅ **AI Model Selection**: 6 diverse models with demographic filters
+- ✅ **Pose & Scene Selection**: Multiple poses and background scenes
+- ✅ **Real-time Generation**: 30-second AI image generation
+- ✅ **Platform Optimization**: Auto-resize for Amazon, Instagram, Meesho
+- ✅ **Credits System**: Pay-per-use and subscription models
+- ✅ **Download Management**: Platform-specific high-quality downloads
+
+### Model Diversity
+- **Gender**: Male, Female
+- **Age Groups**: 18-25, 25-35, 35+
+- **Body Types**: Slim, Average, Plus
+- **Skin Tones**: Fair, Medium, Dark (India-focused)
+- **Heights**: 5'4" to 6'0"
+
+### Scene Options
+- **Studio**: Clean professional background
+- **Street**: Urban outdoor setting
+- **Cafe**: Lifestyle indoor scene
+- **Nature**: Outdoor natural environment
+
+### Pose Variations
+- Standing poses
+- Walking poses
+- Sitting poses
+- Action poses
+
+## 🔒 Security & Legal
+
+### Image Security
+- File type validation (JPG, PNG, WebP)
+- Size limits (10MB max)
+- Secure file storage
+- Base64 encoding for downloads
+
+### Legal Compliance
+- 100% AI-generated models (no real person likeness)
+- Commercial usage rights included
+- No model release needed
+- Clear terms of service
+
+## 📊 Analytics & Monitoring
+
+### Admin Dashboard
+- Total generations tracking
+- Active users monitoring
+- Revenue analytics
+- Cost per generation
+- System health status
+- Recent activity logs
+
+### Usage Metrics
+- Generation success rate
+- Average generation time
+- Popular models/poses
+- Platform download distribution
+- Credit consumption patterns
+
+## 🚀 Deployment
+
+### Development
+```bash
+bun run dev
+```
+
+### Production Build
+```bash
+bun run build
+bun run start
+```
+
+### Environment Variables
+```env
+# AI Configuration
+ZAI_API_KEY=your_zai_api_key
+
+# Database
+DATABASE_URL=your_database_url
+
+# File Storage
+UPLOAD_DIR=./public/uploads
+GENERATED_DIR=./public/generated
+
+# Security
+JWT_SECRET=your_jwt_secret
+NEXTAUTH_SECRET=your_nextauth_secret
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+For support, email support@aimodelgenerator.com or join our [Discord community](https://discord.gg/aimodelgenerator).
+
+## 🎯 Roadmap
+
+### Phase 1 (Current)
+- ✅ Basic AI generation
+- ✅ Core model selection
+- ✅ Platform downloads
+- ✅ Credits system
+
+### Phase 2 (Next 3 months)
+- 🔄 User authentication
+- 🔄 Payment gateway integration
+- 🔄 Advanced model customization
+- 🔄 Batch generation
+
+### Phase 3 (6 months)
+- 📋 Mobile app
+- 📋 Video generation
+- 📋 Custom model training
+- 📋 API access for enterprise
+
+## 📈 Business Metrics
+
+### Key Performance Indicators
+- **Daily Active Users**: Target 1,000+ by month 3
+- **Generation Success Rate**: >95%
+- **Average Generation Time**: <30 seconds
+- **Customer Satisfaction**: >4.5/5
+- **Monthly Revenue**: Target ₹10L by month 6
+
+### Unit Economics
+- **Cost per Generation**: ~₹45 (GPU + API)
+- **Revenue per Generation**: ₹99 (pay-per-use)
+- **Gross Margin**: 54%
+- **Customer Lifetime Value**: ₹2,500 (average subscription)
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+**Built with ❤️ for Indian fashion sellers**
+
+*"No model. No shoot. No delay. ₹99."*
