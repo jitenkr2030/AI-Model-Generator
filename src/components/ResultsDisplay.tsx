@@ -85,11 +85,11 @@ export default function ResultsDisplay({ images, onReset }: ResultsDisplayProps)
       </div>
 
       {/* Image Thumbnails */}
-      <div className="flex justify-center space-x-4">
+      <div className="flex justify-center space-x-2 sm:space-x-4 overflow-x-auto pb-2">
         {images.map((image, index) => (
           <div 
             key={index}
-            className={`w-20 h-20 rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
+            className={`w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden cursor-pointer border-2 transition-all flex-shrink-0 ${
               selectedImage === image ? 'border-purple-600 scale-110' : 'border-gray-300'
             }`}
             onClick={() => setSelectedImage(image)}
@@ -103,7 +103,7 @@ export default function ResultsDisplay({ images, onReset }: ResultsDisplayProps)
       <Card>
         <CardContent className="p-6">
           <h4 className="font-semibold text-lg mb-4">Download for Platform</h4>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {platforms.map(platform => {
               const Icon = platform.icon
               return (

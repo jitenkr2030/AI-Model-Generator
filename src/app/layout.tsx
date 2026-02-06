@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import Providers from "@/components/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,24 +15,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Z.ai Code Scaffold - AI-Powered Development",
-  description: "Modern Next.js scaffold optimized for AI-powered development with Z.ai. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
-  keywords: ["Z.ai", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React"],
-  authors: [{ name: "Z.ai Team" }],
+  title: "AI Model Generator - Virtual Fashion Photography",
+  description: "Generate professional fashion model images with AI. No models, no photographers, no delays. Just conversion-ready images by tonight.",
+  keywords: ["AI", "Fashion", "Model Generator", "E-commerce", "Virtual Photography"],
+  authors: [{ name: "AI Model Generator Team" }],
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+    icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
-    url: "https://chat.z.ai",
-    siteName: "Z.ai",
+    title: "AI Model Generator",
+    description: "Upload clothes. Get a human. No drama.",
+    url: "https://aimodelgenerator.com",
+    siteName: "AI Model Generator",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
+    title: "AI Model Generator",
+    description: "Upload clothes. Get a human. No drama.",
   },
 };
 
@@ -45,8 +46,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        {children}
-        <Toaster />
+        <Providers>
+          {children}
+          <Toaster />
+          <script
+            src="https://checkout.razorpay.com/v1/checkout.js"
+            async
+          />
+        </Providers>
       </body>
     </html>
   );

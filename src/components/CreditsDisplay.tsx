@@ -1,23 +1,27 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { CreditCard, Zap, Crown, Star } from 'lucide-react'
+import { CreditCard, Zap, Crown, Star, IndianRupee } from 'lucide-react'
 
 interface CreditsDisplayProps {
   onUpgrade?: () => void
 }
 
 export default function CreditsDisplay({ onUpgrade }: CreditsDisplayProps) {
+  const { data: session } = useSession()
   const [credits, setCredits] = useState(999)
   const [subscription, setSubscription] = useState('free')
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    fetchCredits()
-  }, [])
+    if (session?.user?.id) {
+      fetchCredits()
+    }
+  }, [session])
 
   const fetchCredits = async () => {
     try {
@@ -32,21 +36,72 @@ export default function CreditsDisplay({ onUpgrade }: CreditsDisplayProps) {
     }
   }
 
-  const purchaseCredits = async (amount: number) => {
+  const purchaseCredits = async (amount: number, creditAmount: number) => {
+    if (!session?.user?.id) {
+      alert('Please sign in to purchase credits')
+      return
+    }
+
     setIsLoading(true)
     try {
-      const response = await fetch('/api/credits', {
+      // Create payment order
+      const response = await fetch('/api/payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'purchase', amount })
+        body: JSON.stringify({
+          amount,
+          credits: creditAmount,
+          userId: session.user.id,
+          paymentMethod: 'razorpay'
+        })
       })
       
       const data = await response.json()
       if (data.success) {
-        setCredits(data.newBalance)
+        // Initialize Razorpay payment
+        const options = {
+          key: 'rzp_test_YourKeyHere', // Replace with your Razorpay key
+          amount: data.order.amount,
+          currency: data.order.currency,
+          name: 'AI Model Generator',
+          description: `Purchase ${creditAmount} credits`,
+          order_id: data.order.id,
+          handler: async function (response: any) {
+            // Verify payment and update credits
+            const verifyResponse = await fetch('/api/payment', {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                purchaseId: data.purchaseId,
+                paymentId: response.razorpay_payment_id,
+                orderId: response.razorpay_order_id,
+                status: 'completed'
+              })
+            })
+            
+            const verifyData = await verifyResponse.json()
+            if (verifyData.success) {
+              setCredits(prev => prev + creditAmount)
+              alert('Payment successful! Credits added to your account.')
+            } else {
+              alert('Payment verification failed. Please contact support.')
+            }
+          },
+          prefill: {
+            name: session.user?.name || '',
+            email: session.user?.email || '',
+          },
+          theme: {
+            color: '#9333ea'
+          }
+        }
+
+        const rzp = new (window as any).Razorpay(options)
+        rzp.open()
       }
     } catch (error) {
       console.error('Failed to purchase credits:', error)
+      alert('Failed to initiate payment. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -102,24 +157,36 @@ export default function CreditsDisplay({ onUpgrade }: CreditsDisplayProps) {
 
         <div className="mt-4 space-y-2">
           {subscription === 'free' && (
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 gap-2">
               <Button 
                 variant="outline" 
                 size="sm"
-                onClick={() => purchaseCredits(100)}
+                onClick={() => purchaseCredits(99, 100)}
                 disabled={isLoading}
-                className="text-xs"
+                className="text-xs justify-start"
               >
-                +100 Credits
+                <IndianRupee className="w-3 h-3 mr-1" />
+                100 Credits - ₹99
               </Button>
               <Button 
                 variant="outline" 
                 size="sm"
-                onClick={() => purchaseCredits(500)}
+                onClick={() => purchaseCredits(499, 500)}
                 disabled={isLoading}
-                className="text-xs"
+                className="text-xs justify-start"
               >
-                +500 Credits
+                <IndianRupee className="w-3 h-3 mr-1" />
+                500 Credits - ₹499
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => purchaseCredits(999, 1000)}
+                disabled={isLoading}
+                className="text-xs justify-start"
+              >
+                <IndianRupee className="w-3 h-3 mr-1" />
+                1000 Credits - ₹999
               </Button>
             </div>
           )}
@@ -139,6 +206,12 @@ export default function CreditsDisplay({ onUpgrade }: CreditsDisplayProps) {
             <strong>Pro Tip:</strong> Subscriptions save you 50% vs pay-per-image!
           </p>
         </div>
+
+        {/* Razorpay Script */}
+        <script
+          src="https://checkout.razorpay.com/v1/checkout.js"
+          async
+        />
       </CardContent>
     </Card>
   )

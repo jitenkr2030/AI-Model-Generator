@@ -122,7 +122,7 @@ export default function ModelSelector({ productImage, onSelect }: ModelSelectorP
       <div className="space-y-4">
         <h4 className="font-semibold">Filters</h4>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Gender Filter */}
           <div className="space-y-2">
             <label className="text-sm font-medium">Gender</label>
@@ -198,7 +198,7 @@ export default function ModelSelector({ productImage, onSelect }: ModelSelectorP
       </div>
 
       {/* Model Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredModels.map(model => (
           <Card 
             key={model.id}

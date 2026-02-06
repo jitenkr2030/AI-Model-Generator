@@ -106,7 +106,7 @@ export default function PoseSelector({ onSelect }: PoseSelectorProps) {
       {/* Pose Selection */}
       <div className="space-y-4">
         <h4 className="font-semibold text-lg">Select Pose</h4>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {poses.map(pose => {
             const Icon = pose.icon
             return (
@@ -145,7 +145,7 @@ export default function PoseSelector({ onSelect }: PoseSelectorProps) {
       {/* Scene Selection */}
       <div className="space-y-4">
         <h4 className="font-semibold text-lg">Select Background Scene</h4>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {scenes.map(scene => {
             const Icon = scene.icon
             return (
@@ -184,7 +184,7 @@ export default function PoseSelector({ onSelect }: PoseSelectorProps) {
       {/* Additional Options */}
       <div className="space-y-4">
         <h4 className="font-semibold text-lg">Additional Options</h4>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <Card className="p-4">
             <h5 className="font-medium mb-2">Image Quality</h5>
             <select className="w-full p-2 border rounded-md">
